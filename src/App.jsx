@@ -1,73 +1,87 @@
-function App() {
+import { Routes, Route, Link } from 'react-router-dom'
+import Hero from './components/Hero'
+import Features from './components/Features'
+import HowItWorks from './components/HowItWorks'
+import Pricing from './components/Pricing'
+import Footer from './components/Footer'
+
+function Navbar() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-      {/* Subtle pattern overlay */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.05),transparent_50%)]"></div>
+    <header className="fixed top-0 inset-x-0 z-50 bg-[#0a0a0a]/70 backdrop-blur border-b border-white/10">
+      <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
+        <Link to="/" className="cursor-pointer text-[#f5f5f5] font-bold">StepWize</Link>
+        <nav className="hidden sm:flex items-center gap-6 text-[#f5f5f5]/80">
+          <a href="#features" className="cursor-pointer hover:text-[#00ff88]">Features</a>
+          <Link to="/auth" className="cursor-pointer hover:text-[#0088ff]">Auth</Link>
+          <Link to="/dashboard" className="cursor-pointer hover:text-[#ff0080]">Dashboard</Link>
+        </nav>
+      </div>
+    </header>
+  )
+}
 
-      <div className="relative min-h-screen flex items-center justify-center p-8">
-        <div className="max-w-2xl w-full">
-          {/* Header with Flames icon */}
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center justify-center mb-6">
-              <img
-                src="/flame-icon.svg"
-                alt="Flames"
-                className="w-24 h-24 drop-shadow-[0_0_25px_rgba(59,130,246,0.5)]"
-              />
-            </div>
+function Landing() {
+  return (
+    <main className="bg-[#0a0a0a]">
+      <Navbar />
+      <Hero />
+      <Features />
+      <HowItWorks />
+      <Pricing />
+      <Footer />
+    </main>
+  )
+}
 
-            <h1 className="text-5xl font-bold text-white mb-4 tracking-tight">
-              Flames Blue
-            </h1>
-
-            <p className="text-xl text-blue-200 mb-6">
-              Build applications through conversation
-            </p>
-          </div>
-
-          {/* Instructions */}
-          <div className="bg-slate-800/50 backdrop-blur-sm border border-blue-500/20 rounded-2xl p-8 shadow-xl mb-6">
-            <div className="flex items-start gap-4 mb-6">
-              <div className="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-lg flex items-center justify-center font-bold">
-                1
-              </div>
-              <div>
-                <h3 className="font-semibold text-white mb-1">Describe your idea</h3>
-                <p className="text-blue-200/80 text-sm">Use the chat panel on the left to tell the AI what you want to build</p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4 mb-6">
-              <div className="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-lg flex items-center justify-center font-bold">
-                2
-              </div>
-              <div>
-                <h3 className="font-semibold text-white mb-1">Watch it build</h3>
-                <p className="text-blue-200/80 text-sm">Your app will appear in this preview as the AI generates the code</p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4">
-              <div className="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-lg flex items-center justify-center font-bold">
-                3
-              </div>
-              <div>
-                <h3 className="font-semibold text-white mb-1">Refine and iterate</h3>
-                <p className="text-blue-200/80 text-sm">Continue the conversation to add features and make changes</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Footer */}
-          <div className="text-center">
-            <p className="text-sm text-blue-300/60">
-              No coding required • Just describe what you want
-            </p>
-          </div>
-        </div>
+function Dashboard() {
+  return (
+    <div className="min-h-screen bg-[#0a0a0a] text-[#f5f5f5] flex items-center justify-center p-8">
+      <div className="max-w-2xl text-center">
+        <h1 className="text-4xl font-bold">Dashboard</h1>
+        <p className="mt-2 text-[#f5f5f5]/80">Protected area. Coming next: tasks, stats, and focus mode.</p>
+        <a href="/" className="cursor-pointer inline-flex mt-6 rounded-xl px-5 py-3 font-semibold bg-[#00ff88] text-[#0a0a0a]">Back Home</a>
       </div>
     </div>
   )
 }
 
-export default App
+function Auth() {
+  return (
+    <div className="min-h-screen bg-[#0a0a0a] text-[#f5f5f5] flex items-center justify-center p-8">
+      <div className="w-full max-w-md bg-white/5 border border-white/10 rounded-2xl p-6">
+        <h1 className="text-3xl font-bold">Sign in</h1>
+        <p className="mt-1 text-[#f5f5f5]/80">Email OTP or continue as guest.</p>
+        <form className="mt-6 space-y-3">
+          <input type="email" placeholder="you@example.com" className="w-full bg-[#0a0a0a] border border-white/15 rounded-xl px-4 py-3" />
+          <button type="button" className="cursor-pointer w-full rounded-xl px-5 py-3 font-semibold bg-[#0088ff]">Send OTP</button>
+          <input type="text" placeholder="Enter code" className="w-full bg-[#0a0a0a] border border-white/15 rounded-xl px-4 py-3" />
+          <button type="button" className="cursor-pointer w-full rounded-xl px-5 py-3 font-semibold bg-[#00ff88]">Verify</button>
+          <button type="button" className="cursor-pointer w-full rounded-xl px-5 py-3 font-semibold bg-[#ff0080]">Continue as Guest</button>
+        </form>
+      </div>
+    </div>
+  )
+}
+
+function NotFound() {
+  return (
+    <div className="min-h-screen bg-[#0a0a0a] text-[#f5f5f5] grid place-items-center p-8">
+      <div className="text-center">
+        <h1 className="text-6xl font-extrabold">404</h1>
+        <p className="mt-2 text-[#f5f5f5]/80">That page couldn’t be found.</p>
+        <a href="/" className="cursor-pointer inline-flex mt-6 rounded-xl px-5 py-3 font-semibold bg-[#00ff88] text-[#0a0a0a]">Go Home</a>
+      </div>
+    </div>
+  )
+}
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Landing />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/auth" element={<Auth />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  )
+}
